@@ -24,10 +24,14 @@ void main(int argc, char **argv) {
     exit(1);
   }
 
+  if (argc >= 256) {
+      printf("Too many parameters. Only 256 allowed.\n");
+    }
+
   char *args[256];
   uint ind = 0;
 
-  // tokenise the command and params
+  // tokenise the command and params that linux places in argv[1]
   char *tok;
   char *pos;
   char *string = argv[1];
@@ -39,8 +43,12 @@ void main(int argc, char **argv) {
     string = NULL;
   }
 
-  // add the name of the file (i.e. the script)
-  args[ind++] = argv[2];
+  // add the script (argv[2]) and its arguments (argv[3+])
+  char **param = &argv[2];
+  while (*param) {
+    args[ind++] = *param;
+    param++;
+  }
   args[ind] = NULL;
 
   execvp(args[0], args);
