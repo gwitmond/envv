@@ -11,5 +11,7 @@ This is because coreutils-env does not split the input on spaces.
 We do! It's so simple. :-)
 
 Usage:
-    #!/usr/bin/envv make -f
-    # rest of Makefile follows
+```
+#!/usr/bin/envv make -f
+# rest of Makefile follows
+```
